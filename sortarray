@@ -1,0 +1,11 @@
+1.9.3-p545 :024 > def sortarray(*arr)
+1.9.3-p545 :025?>   puts "array : "+arr.to_s
+1.9.3-p545 :026?>   puts "sort : "+arr.sort!.to_s
+1.9.3-p545 :027?>   puts "max : "+arr.max.to_s
+1.9.3-p545 :028?>   end
+ => nil 
+1.9.3-p545 :029 > sortarray(5,3,7)
+array : [5, 3, 7]
+sort : [3, 5, 7]
+max : 7
+ => nil 

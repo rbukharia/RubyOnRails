@@ -1,0 +1,4 @@
+1.9.3-p545 :001 > user = User.userindo
+  SQL (0.2ms)  SELECT `users`.`id` AS t0_r0, `users`.`first_name` AS t0_r1, `users`.`last_name` AS t0_r2, `users`.`email` AS t0_r3, `users`.`username` AS t0_r4, `users`.`password` AS t0_r5, `users`.`created_at` AS t0_r6, `users`.`updated_at` AS t0_r7, `users`.`date_of_birth` AS t0_r8, `users`.`age` AS t0_r9, `users`.`address` AS t0_r10, `users`.`country_id` AS t0_r11, `countries`.`id` AS t1_r0, `countries`.`code` AS t1_r1, `countries`.`name` AS t1_r2, `countries`.`created_at` AS t1_r3, `countries`.`updated_at` AS t1_r4 FROM `users` LEFT OUTER JOIN `countries` ON `countries`.`id` = `users`.`country_id` WHERE (countries.name = 'Indonesia')
+ => [#<User id: 1, first_name: "Martin", last_name: "No Name", email: "Martin@gmail.com", username: "MartinNoName", password: "Martin", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-23 04:02:28", date_of_birth: "1 january 1990", age: 24, address: "Jl. Martin 1", country_id: 1>] 
+

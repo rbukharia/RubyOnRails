@@ -1,0 +1,17 @@
+1.9.3-p545 :013 > def textconvert(str,name,num)
+1.9.3-p545 :014?>     str2=str.upcase
+1.9.3-p545 :015?>     puts str+": "+str2
+1.9.3-p545 :016?>     name[0]=name[0].upcase
+1.9.3-p545 :017?>     puts name+": "+name
+1.9.3-p545 :018?>     num2=Math.sqrt(num)
+1.9.3-p545 :019?>     puts num.to_s+": "+num2.to_s
+1.9.3-p545 :020?>     name2=name.size
+1.9.3-p545 :021?>     puts name+": "+name2.to_s
+1.9.3-p545 :022?>   end
+ => nil 
+1.9.3-p545 :023 > textconvert("hello","rizqy",16)
+hello: HELLO
+Rizqy: Rizqy
+16: 4.0
+Rizqy: 5
+ => nil 

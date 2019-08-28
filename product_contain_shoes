@@ -1,0 +1,7 @@
+1.9.3-p545 :003 > category = Category.find(1)
+  Category Load (0.4ms)  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1
+ => #<Category id: 1, name: "books", created_at: "2014-04-24 04:09:53", updated_at: "2014-04-24 09:35:44", user_id: 2> 
+1.9.3-p545 :004 > category.shoes
+  Product Load (0.9ms)  SELECT `products`.* FROM `products` INNER JOIN `categories_products` ON `products`.`id` = `categories_products`.`product_id` WHERE `categories_products`.`category_id` = 1 AND (products.name like '%shoes%')
+ => [#<Product id: 4, name: "sport shoes", price: "300", stock: "100", description: nil, created_at: "2014-04-25 14:23:40", updated_at: "2014-04-25 14:23:40", user_id: 3>, #<Product id: 2, name: "red shoes", price: "200", stock: "50", description: "RED SHOES RED SHOES RED SHOES RED SHOES RED SHOES", created_at: "2014-04-25 14:22:43", updated_at: "2014-04-25 14:22:43", user_id: 1>] 
+

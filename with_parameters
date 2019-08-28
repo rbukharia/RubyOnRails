@@ -1,0 +1,51 @@
+1.9.3-p545 :061 > def sum_2_variables(a,b)
+1.9.3-p545 :062?>     c=a+b
+1.9.3-p545 :063?>     puts a.to_s+" + "+b.to_s+" = "+c.to_s
+1.9.3-p545 :064?>   end
+ => nil 
+1.9.3-p545 :065 > sum_2_variables(4,9)
+4 + 9 = 13
+ => nil 
+
+
+1.9.3-p545 :088 > def times_2_variables(a,b)
+1.9.3-p545 :089?>     c=a*b
+1.9.3-p545 :090?>     puts a.to_s+" x "+b.to_s+" = "+c.to_s
+1.9.3-p545 :091?>   end
+ => nil 
+1.9.3-p545 :092 > times_2_variables(7,23)
+7 x 23 = 161
+ => nil 
+
+
+1.9.3-p545 :066 > def sum_num_to_arr(a,*b)
+1.9.3-p545 :067?>     c=a+b[0]
+1.9.3-p545 :068?>     d=a+b[1]
+1.9.3-p545 :069?>     puts a.to_s+" + "+b[0].to_s+" = "+c.to_s
+1.9.3-p545 :070?>     puts a.to_s+" + "+b[1].to_s+" = "+d.to_s
+1.9.3-p545 :071?>   end
+ => nil 
+1.9.3-p545 :072 > sum_num_to_arr(5,2,3)
+5 + 2 = 7
+5 + 3 = 8
+ => nil 
+
+
+1.9.3-p545 :073 > def word_size(word)
+1.9.3-p545 :074?>     wsize=word.size
+1.9.3-p545 :075?>     puts "number of characters : "+wsize.to_s
+1.9.3-p545 :076?>   end
+ => nil 
+1.9.3-p545 :077 > word_size("asfvsdgvsd")
+number of characters : 10
+ => nil 
+
+
+1.9.3-p545 :078 > def change_to_upcase(str)
+1.9.3-p545 :079?>     str2=str.upcase
+1.9.3-p545 :080?>     puts str+" = "+str2
+1.9.3-p545 :081?>   end
+ => nil 
+1.9.3-p545 :082 > change_to_upcase("khsdfwnhd")
+khsdfwnhd = KHSDFWNHD
+ => nil 

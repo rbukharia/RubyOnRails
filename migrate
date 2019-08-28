@@ -1,0 +1,28 @@
+==  Users: migrating ==========================================================
+-- add_column(:users, :date_of_birth, :string)
+   -> 0.2120s
+-- add_column(:users, :age, :integer)
+   -> 0.2014s
+-- add_column(:users, :address, :string)
+   -> 0.2018s
+-- remove_column(:users, :bio_profile)
+   -> 0.2018s
+-- rename_column(:users, :user_name, :username)
+   -> 0.2355s
+==  Users: migrated (1.0532s) =================================================
+
+==  Countries: migrating ======================================================
+-- change_column(:countries, :code, :string)
+   -> 0.1799s
+==  Countries: migrated (0.1801s) =============================================
+
+==  Articles: migrating =======================================================
+-- change_column(:articles, :body, :text)
+   -> 0.1972s
+==  Articles: migrated (0.1973s) ==============================================
+
+==  Comments: migrating =======================================================
+-- rename_column(:comments, :body, :content)
+   -> 0.1999s
+==  Comments: migrated (0.2001s) ==============================================
+

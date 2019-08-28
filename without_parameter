@@ -1,0 +1,40 @@
+1.9.3-p545 :032 > def method1
+1.9.3-p545 :033?>      puts "method1!"
+1.9.3-p545 :034?>   end
+ => nil 
+1.9.3-p545 :035 > 
+1.9.3-p545 :036 >   def method2
+1.9.3-p545 :037?>      puts "method2!"
+1.9.3-p545 :038?>   end
+ => nil 
+1.9.3-p545 :039 > 
+1.9.3-p545 :040 >   def method3
+1.9.3-p545 :041?>      puts "method3!"
+1.9.3-p545 :042?>   end
+ => nil 
+1.9.3-p545 :043 > 
+1.9.3-p545 :044 >   def method4
+1.9.3-p545 :045?>      puts "method4!"
+1.9.3-p545 :046?>   end
+ => nil 
+1.9.3-p545 :047 > 
+1.9.3-p545 :048 >   def method5
+1.9.3-p545 :049?>      puts "method5!"
+1.9.3-p545 :050?>   end
+ => nil 
+1.9.3-p545 :051 > method1
+method1!
+ => nil 
+1.9.3-p545 :052 > method2
+method2!
+ => nil 
+1.9.3-p545 :053 > method3
+method3!
+ => nil 
+1.9.3-p545 :054 > method4
+method4!
+ => nil 
+1.9.3-p545 :055 > method5
+method5!
+ => nil 
+

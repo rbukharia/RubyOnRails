@@ -1,0 +1,7 @@
+1.9.3-p545 :001 > user = User.find(1)
+  User Load (0.4ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+ => #<User id: 1, first_name: "Martin", last_name: "No Name", email: "Martin@gmail.com", username: "MartinNoName", password: "Martin", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-23 04:02:28", date_of_birth: "1 january 1990", age: 24, address: "Jl. Martin 1", country_id: 1> 
+1.9.3-p545 :002 > user.contain
+  Article Load (0.5ms)  SELECT `articles`.* FROM `articles` WHERE `articles`.`user_id` = 1 AND (descriptions like '%my%country%')
+ => [#<Article id: 5, title: "article5", descriptions: "my country content content content content content ...", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-24 08:40:58", rating: 3, user_id: 1>] 
+

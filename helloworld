@@ -1,0 +1,7 @@
+q@q-Satellite-L645:~$ irb
+1.9.3-p545 :001 > def hello
+1.9.3-p545 :002?>   "Hello world!"
+1.9.3-p545 :003?>   end
+ => nil 
+1.9.3-p545 :004 > hello
+ => "Hello world!" 

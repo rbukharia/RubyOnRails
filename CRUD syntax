@@ -1,0 +1,79 @@
+1.9.3-p545 :001 > user = User.create({})
+   (0.2ms)  BEGIN
+[deprecated] I18n.enforce_available_locales will default to true in the future. If you really want to skip validation of your locale you can set I18n.enforce_available_locales = false to avoid this message.
+  User Exists (0.3ms)  SELECT 1 AS one FROM `users` WHERE `users`.`email` IS NULL LIMIT 1
+   (0.2ms)  ROLLBACK
+ => #<User id: nil, first_name: nil, last_name: nil, email: nil, username: nil, password: nil, created_at: nil, updated_at: nil, date_of_birth: nil, age: nil, address: nil, country_id: nil> 
+1.9.3-p545 :002 > user.errors
+ => #<ActiveModel::Errors:0x9dbc6b8 @base=#<User id: nil, first_name: nil, last_name: nil, email: nil, username: nil, password: nil, created_at: nil, updated_at: nil, date_of_birth: nil, age: nil, address: nil, country_id: nil>, @messages={:first_name=>["can't be blank", "is too short (minimum is 1 characters)", "is invalid"], :last_name=>["can't be blank", "is too short (minimum is 1 characters)", "is invalid"], :email=>["can't be blank", "has already been taken"], :username=>["can't be blank"], :password=>["can't be blank"], :date_of_birth=>["can't be blank"], :age=>["can't be blank"], :address=>["can't be blank"]}> 
+
+
+1.9.3-p545 :003 > article = Article.create({})
+   (0.2ms)  BEGIN
+  Article Exists (0.2ms)  SELECT 1 AS one FROM `articles` WHERE `articles`.`title` IS NULL LIMIT 1
+   (0.2ms)  ROLLBACK
+ => #<Article id: nil, title: nil, descriptions: nil, created_at: nil, updated_at: nil, rating: nil, user_id: nil> 
+1.9.3-p545 :004 > article.errors
+ => #<ActiveModel::Errors:0xa833c40 @base=#<Article id: nil, title: nil, descriptions: nil, created_at: nil, updated_at: nil, rating: nil, user_id: nil>, @messages={:title=>["can't be blank", "has already been taken"], :descriptions=>["can't be blank"]}> 
+
+
+1.9.3-p545 :001 > country = Country.create({})
+   (0.2ms)  BEGIN
+[deprecated] I18n.enforce_available_locales will default to true in the future. If you really want to skip validation of your locale you can set I18n.enforce_available_locales = false to avoid this message.
+   (0.3ms)  ROLLBACK
+ => #<Country id: nil, code: nil, name: nil, created_at: nil, updated_at: nil> 
+1.9.3-p545 :002 > country.errors
+ => #<ActiveModel::Errors:0x97b82d0 @base=#<Country id: nil, code: nil, name: nil, created_at: nil, updated_at: nil>, @messages={:code=>["can't be blank"], :name=>["is not included in the list"]}> 
+
+
+1.9.3-p545 :003 > product = Product.create({})
+   (0.3ms)  BEGIN
+   (0.2ms)  ROLLBACK
+ => #<Product id: nil, name: nil, price: nil, stock: nil, description: nil, created_at: nil, updated_at: nil, user_id: nil> 
+1.9.3-p545 :004 > product.errors
+ => #<ActiveModel::Errors:0x9a71274 @base=#<Product id: nil, name: nil, price: nil, stock: nil, description: nil, created_at: nil, updated_at: nil, user_id: nil>, @messages={:price=>["is invalid"], :name=>["can't be blank"], :stock=>["can't be blank"], :description=>["can't be blank"]}> 
+
+
+1.9.3-p545 :005 > user = User.find(1)
+  User Load (56.4ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+ => #<User id: 1, first_name: "Martin", last_name: "No Name", email: "Martin@gmail.com", username: "MartinNoName", password: "Martin", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-23 04:02:28", date_of_birth: "1 january 1990", age: 24, address: "Jl. Martin 1", country_id: 1> 
+1.9.3-p545 :006 > user.contain
+  Article Load (39.1ms)  SELECT `articles`.* FROM `articles` WHERE `articles`.`user_id` = 1 AND (descriptions like '%my%country%')
+ => [#<Article id: 5, title: "article5", descriptions: "my country content content content content content ...", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-24 08:40:58", rating: 3, user_id: 1>] 
+
+
+1.9.3-p545 :007 > category = Category.find(1)
+  Category Load (0.6ms)  SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = 1 LIMIT 1
+ => #<Category id: 1, name: "books", created_at: "2014-04-24 04:09:53", updated_at: "2014-04-24 09:35:44", user_id: 2> 
+1.9.3-p545 :008 > category.shoes
+  Product Load (28.4ms)  SELECT `products`.* FROM `products` INNER JOIN `categories_products` ON `products`.`id` = `categories_products`.`product_id` WHERE `categories_products`.`category_id` = 1 AND (products.name like '%shoes%')
+ => [#<Product id: 4, name: "sport shoes", price: "300", stock: "100", description: nil, created_at: "2014-04-25 14:23:40", updated_at: "2014-04-25 14:23:40", user_id: 3>, #<Product id: 2, name: "red shoes", price: "200", stock: "50", description: "RED SHOES RED SHOES RED SHOES RED SHOES RED SHOES", created_at: "2014-04-25 14:22:43", updated_at: "2014-04-25 14:22:43", user_id: 1>] 
+
+
+1.9.3-p545 :009 > country = Country.find(1)
+  Country Load (0.6ms)  SELECT `countries`.* FROM `countries` WHERE `countries`.`id` = 1 LIMIT 1
+ => #<Country id: 1, code: "a1", name: "Indonesia", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-23 04:02:28"> 
+1.9.3-p545 :010 > country.indo
+  User Load (0.8ms)  SELECT `users`.* FROM `users` WHERE `users`.`country_id` = 1
+ => [#<User id: 1, first_name: "Martin", last_name: "No Name", email: "Martin@gmail.com", username: "MartinNoName", password: "Martin", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-23 04:02:28", date_of_birth: "1 january 1990", age: 24, address: "Jl. Martin 1", country_id: 1>, #<User id: 4, first_name: "Martin4", last_name: "No Name4", email: "Martin4@gmail.com", username: "MartinNoName4", password: "Martin4", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-23 04:02:28", date_of_birth: "4 january 1993", age: 21, address: "Jl. Martin 4", country_id: 1>] 
+
+
+1.9.3-p545 :011 > Article.contentmorethan100
+  Article Load (28.3ms)  SELECT `articles`.* FROM `articles` WHERE (length(descriptions) > 100)
+ => [#<Article id: 1, title: "article1", descriptions: "content content content content content content con...", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-24 08:40:02", rating: 3, user_id: 2>] 
+
+
+1.9.3-p545 :012 > User.new.findaddress(1)
+  User Load (0.4ms)  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  Country Load (0.2ms)  SELECT `countries`.* FROM `countries` WHERE `countries`.`id` = 1 LIMIT 1
+user id: 1
+address: Jl. Martin 1
+country: Indonesia
+ => nil 
+
+
+1.9.3-p545 :013 > User.agegreaterthan18
+  User Load (0.9ms)  SELECT `users`.* FROM `users` WHERE (age > 18)
+ => [#<User id: 1, first_name: "Martin", last_name: "No Name", email: "Martin@gmail.com", username: "MartinNoName", password: "Martin", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-23 04:02:28", date_of_birth: "1 january 1990", age: 24, address: "Jl. Martin 1", country_id: 1>, #<User id: 2, first_name: "Martin2", last_name: "No Name2", email: "Martin2@gmail.com", username: "MartinNoName2", password: "Martin2", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-23 04:02:28", date_of_birth: "2 january 1991", age: 23, address: "Jl. Martin 2", country_id: 2>, #<User id: 3, first_name: "Martin3", last_name: "Last", email: "Martin3@gmail.com", username: "MartinNoName3", password: "Martin3", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-23 04:46:21", date_of_birth: "3 january 1992", age: 22, address: "Jl. Martin 3", country_id: 3>, #<User id: 4, first_name: "Martin4", last_name: "No Name4", email: "Martin4@gmail.com", username: "MartinNoName4", password: "Martin4", created_at: "2014-04-23 04:02:28", updated_at: "2014-04-23 04:02:28", date_of_birth: "4 january 1993", age: 21, address: "Jl. Martin 4", country_id: 1>, #<User id: 5, first_name: "marton", last_name: nil, email: nil, username: nil, password: nil, created_at: "2014-04-23 09:52:25", updated_at: "2014-04-23 09:52:25", date_of_birth: "5 january 1994", age: 20, address: nil, country_id: 5>, #<User id: 6, first_name: "marten", last_name: nil, email: nil, username: nil, password: nil, created_at: "2014-04-24 02:39:04", updated_at: "2014-04-24 02:39:04", date_of_birth: "6 january 1995", age: 19, address: nil, country_id: 6>] 
+1.9.3-p545 :014 > 
+
